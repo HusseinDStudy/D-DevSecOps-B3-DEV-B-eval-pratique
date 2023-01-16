@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
     config.vm.define "http_numerisation" do |http|
         http.vm.box = "ubuntu/focal64"
         http.vm.hostname = "httpNumerisation"
-        http.vm.network "private_network", ip: "192.168.56.10"
+        http.vm.network "private_network", ip: "192.168.56.32"
         http.vm.provider "virtualbox" do |vb_http|
             vb_http.memory = "2048"
             vb_http.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
     config.vm.define "bdd_numerisation" do |bdd|
         bdd.vm.box = "ubuntu/focal64"
         bdd.vm.hostname = "bddNumerisation"
-        bdd.vm.network "private_network", ip: "192.168.56.10"
+        bdd.vm.network "private_network", ip: "192.168.56.36"
         bdd.vm.provider "virtualbox" do |vb_bdd|
             vb_bdd.memory = "2048"
             vb_bdd.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
@@ -65,9 +65,9 @@ Vagrant.configure("2") do |config|
 #     end
 
 
-#     config.vm.provision "ansible" do |ansible|
-#         ansible.playbook = "../ansible/site.yml"
-#         ansible.compatibility_mode = "2.0"
-#     end
+    config.vm.provision "ansible" do |ansible|
+        ansible.playbook = "../ansible/site.yml"
+        ansible.compatibility_mode = "2.0"
+    end
 end
 

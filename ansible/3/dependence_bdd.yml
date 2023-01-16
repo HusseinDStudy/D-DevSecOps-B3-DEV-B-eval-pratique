@@ -1,0 +1,18 @@
+- name: Install and configure MySQL server
+  hosts: all
+  become: true
+  vars:
+    wp_db_name: mydb
+    wp_db_user: myuser
+    wp_db_password: mypassword
+    wp_db_host: localhost
+    wp_admin_user: admin
+    wp_admin_password: admin_password
+    wp_admin_email: admin@example.com
+    wp_url: numeration.com
+    wp_title: numeration
+  tasks:
+    - name: Install MySQL server
+      apt:
+        name: mysql-server
+        state: present

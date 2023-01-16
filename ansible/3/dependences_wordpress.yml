@@ -12,18 +12,6 @@
       wp_url: numeration.com
       wp_title: numeration
     tasks:
-#      - name: Install Apache web server
-#        apt:
-#          name: apache2
-#          state: present
-      - name: Install MySQL server
-        apt:
-          name: mysql-server
-          state: present
-#      - name: Install PHP
-#        apt:
-#          name: libapache2-mod-php php-mysql
-#          state: present
       - name: "Install apache2"
         package: name=apache2 state=present
           - name: "Install apache2-php7.4"
