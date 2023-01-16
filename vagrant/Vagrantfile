@@ -1,0 +1,50 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+Vagrant.configure("2") do |config|
+    config.vm.box = "ubuntu/focal64"
+    #config.vm.hostname = "numerisation"
+    config.vm.network "private_network", type: "dhcp"
+
+    config.vm.provider "virtualbox" do |vb|
+        vb.memory = "2048"
+        vb.name = "httpNumerisation"
+
+        vb.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
+        vb.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]
+        vb.customize ["modifyvm", :id, "--cableconnected1", "on"]
+
+        config.vm.define "http" do |http|
+                http.vm.hostname = "http"
+                http.vm.network "private_network", ip: "192.168.56.10"
+        #         http.vm.provision "shell", path: "http.sh"
+            end
+    end
+
+
+    config.vm.provider "virtualbox" do |vb|
+        vb.memory = "1024"
+        vb.name = "bddNumerisation1"
+
+        vb.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
+        vb.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]
+        vb.customize ["modifyvm", :id, "--cableconnected1", "on"]
+
+         config.vm.define "bdd" do |bdd|
+                bdd.vm.hostname = "bdd"
+                bdd.vm.network "private_network", ip: "192.168.56.11"
+        #         bdd.vm.provision "shell", path: "bdd.sh"
+            end
+    end
+
+
+#     config.vm.provision "ansible" do |ansible|
+#         ansible.playbook = "../ansible/site.yml"
+#         ansible.compatibility_mode = "2.0"
+#     end
+end
+

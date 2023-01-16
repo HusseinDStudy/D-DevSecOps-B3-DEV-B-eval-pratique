@@ -1,0 +1,16 @@
+---
+- name: Provisionner VM
+  hosts: all
+  become: yes
+  become_method: sudo
+  remote_user: ubuntu
+  tasks:
+    #- import_tasks: 2/pam_pwquality.yml
+    - import_tasks: 2/user_and_group.yml
+    #- import_tasks: 3/authorized_keys.yml
+    #- import_tasks: 3/multifactor_auth.yml
+    #  - import_tasks: 4/web_app.yml
+    #  - import_tasks: 4/sudoers.yml
+    #  - import_tasks: 5/firewall.yml
+  #handlers:
+    #- import_tasks: handlers/restart_sshd.yml

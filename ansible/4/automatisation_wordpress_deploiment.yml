@@ -1,0 +1,64 @@
+#TODO SET DEPLOYMENT WORDPRESS
+---
+- name: Deploy existing WordPress site
+  hosts: all
+  become: yes
+  vars:
+    wp_db_name: mydb
+    wp_db_user: myuser
+    wp_db_password: mypassword
+    wp_db_host: localhost
+    wp_url: numeration.com
+    wp_title: numeration
+    backup_dir: /path/to/backup/dir
+  tasks:
+    - name: Download and Extract existing WordPress site
+      unarchive:
+        src: /path/to/existing_site.tar.gz
+        dest: /var/www/html/
+        remote_src: true
+    - name: Copy existing WordPress config file
+      copy:
+        src: /path/to/wp-config.php
+        dest: /var/www/html/wordpress/wp-config.php
+        mode: 0644
+    - name: Update existing WordPress config file
+      replace:
+        path: /var/www/html/wordpress/wp-config.php
+        regexp: 'database_name_here'
+        replace: "{{ wp_db_name }}"
+      replace:
+        path: /var/www/html/wordpress/wp-config.php
+        regexp: 'username_here'
+        replace: "{{ wp_db_user }}"
+      replace:
+        path: /var/www/html/wordpress/wp-config.php
+        regexp: 'password_here'
+        replace: "{{ wp_db_password }}"
+      replace:
+        path: /var/www/html/wordpress/wp-config.php
+        regexp: 'localhost'
+        replace: "{{ wp_db_host }}"
+    - name: Create .htaccess file
+      copy:
+        src: /path/to/.htaccess
+        dest: /var/www/html/wordpress/
+        mode: 0644
+    - name: Create index.php file
+      copy:
+        src: /path/to/index.php
+        dest: /var/www/html/wordpress/
+        mode: 0644
+
+    - name: Create backup directory
+      file:
+        path: "{{ backup_dir }}"
+        state: directory
+    - name: Backup MySQL database
+      shell: mysqldump -u "{{ wp_db_user }}" -p"{{ wp_db_password }}" "{{ wp_db_name }}" > "{{ backup_dir }}/{{ wp_db_name }}.sql"
+    - name: Transfer backup to new server
+      synchronize:
+        src: "{{ backup_dir }}"
+        dest: /path/to/destination
+        remote_user: ansible
+        private_key: /path/to/ssh_key

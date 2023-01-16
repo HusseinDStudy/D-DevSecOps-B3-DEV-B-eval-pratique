@@ -1,0 +1,45 @@
+#TODO: Un Fichier Ansible + Spare les taches
+- name: Vérifier que le groupe 'devops' existe # nom de tache
+  group: # nom de module anisble
+    name: devops
+    state: present
+
+- name: Créer l'utilisateur 'user_wordpress'
+  user:
+    name: user_wordpress
+    shell: /bin/bash
+    password: $6$OStSJfA6FA$ffSDaJBWfSpmnwlC6QWJwLG3PgZWQhPYUSezmRvSiUFpwSWy/57KuUuLg/4yGBpKx2TWYsPDz9Yq7nL2I2XT3/
+
+- name: Assigner 'user_wordpress' au groupe 'devops'
+  user:
+    name: user_wordpress
+    groups: devops
+    append: yes # Assigne au groupe dev sinon voir cours[chaque utilisateur a un groupe a son nom]
+
+- name: Créer un dossier 'www'
+  file:
+    path: /var/www
+    state: directory
+    mode: 0777 # user_wordpress owner|Groupe owner|Others => R4+W2+X1	[sur 3 + sticky bit au debut] => info:l'utilisateur qui a cree le file est defini par defaut dans ce cas par ansible
+    group: devops
+
+- name: 'user_wordpress' run as sudo
+  become: yes
+  become_user: user_wordpress
+
+- name: Définir le fichier de clé SSH autorisé pour l'utilisateur user_wordpress
+  authorized_key:
+    user: user_wordpress
+    state: present
+    key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/devsecops.pub') }}"
+
+
+#- name: Créer un fichier dans le dossier /var/www
+#  file:
+#    path: "/var/www/private.txt"
+#    state: touch # elle est censer mettre a jour  date time d'un fichier et si il n'existe pas il le crée voir stat cmd avt apres
+#    mode: 0770
+#    group: devops
+#    # sudo su florian => ls -la /opt/engineering/ => groups => getent passwd florian == pour verifier les utilisareur de systems=> logout =>
+    # cat /etc/passwd | grep "/bin/bash"| cut -d: -f1
+    
