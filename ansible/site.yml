@@ -7,12 +7,16 @@
   tasks:
     - import_tasks: 2/user_and_group.yml
     #- import_tasks: 4/automatisation_wordpress_deploiment.yml
+>>>>>>>>> Temporary merge branch 2
     #- import_tasks: 3/authorized_keys.yml
     #- import_tasks: 3/multifactor_auth.yml
     #  - import_tasks: 4/web_app.yml
     #  - import_tasks: 4/sudoers.yml
     #  - import_tasks: 5/firewall.yml
+<<<<<<<<< Temporary merge branch 1
+=========
     #- import_tasks: 7/pam_pwquality.yml
+>>>>>>>>> Temporary merge branch 2
   #handlers:
     #- import_tasks: handlers/restart_sshd.yml
 
