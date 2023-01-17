@@ -1,0 +1,12 @@
+# BDD Auth
+root_password: mypassword
+db_name: bd_numeration
+db_file: /home/vagrant/bd_numeration.sql
+
+# WordPress conf
+wp_db_name: mydb
+wp_db_user: myuser
+wp_db_password: mypassword
+wp_db_host: "192.168.56.36"
+
+wp_prefix : num69Wp
