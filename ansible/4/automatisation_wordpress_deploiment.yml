@@ -1,6 +1,6 @@
 ---
 - name: Deploy existing WordPress site
-  hosts: all
+  hosts: httpNumerisation
   become: yes
   vars:
     wp_db_name: mydb
@@ -44,6 +44,9 @@
         regexp: 'localhost'
         replace: "{{ wp_db_host }}"
 
-### COPIES DE LA BDD SUR LE SERVER BDD
-    - name: Import MariaDB database
-      shell: mysql -u root -p{{ mariadb_root_password }} {{ mariadb_db_name }} < {{ mariadb_db_file }}
+---
+- name: Deployment BDD into server BDD
+  host: bdd_numeration
+  become: yes
+  var:
+    

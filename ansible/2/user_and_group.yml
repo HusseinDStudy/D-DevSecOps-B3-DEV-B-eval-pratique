@@ -16,16 +16,16 @@
     groups: devops
     append: yes # Assigne au groupe dev sinon voir cours[chaque utilisateur a un groupe a son nom]
 
+- name: user_wordpress run as sudo
+  become: yes
+  become_user: user_wordpress
+
 - name: Créer un dossier 'www'
   file:
     path: /var/www
     state: directory
     mode: 0777 # user_wordpress owner|Groupe owner|Others => R4+W2+X1	[sur 3 + sticky bit au debut] => info:l'utilisateur qui a cree le file est defini par defaut dans ce cas par ansible
     group: devops
-
-- name: '"user_wordpress" run as sudo'
-  become: yes
-  become_user: user_wordpress
 
 - name: Définir le fichier de clé SSH autorisé pour l'utilisateur user_wordpress
   authorized_key:

@@ -14,7 +14,8 @@ D-DevSecOps-B3-GDPROG-eval-pratique/
 │   │   └── user_and_group.ymal
 │   ├── /3
 │   │   ├── wordpress/
-
+│   │   │   ├── bd_numeration.sql
+│   │   │   └── numeration.tar.gz
 │   │   └── dependences_wordpress.yml
 │   ├── /5
 │   │   ├── 
