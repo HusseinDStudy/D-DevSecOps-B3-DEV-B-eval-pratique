@@ -1,6 +1,7 @@
 # BDD Auth
-root_password: mypassword
+db_user: root
 db_name: bd_numeration
+root_password: mypassword
 db_file: /home/vagrant/bd_numeration.sql
 
 # WordPress conf
