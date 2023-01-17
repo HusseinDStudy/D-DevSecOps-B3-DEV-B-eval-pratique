@@ -10,9 +10,9 @@
     wp_url: numeration.com
     wp_title: numeration
     backup_dir: /path/to/backup/dir
-    mariadb_root_password: "password"
-    mariadb_db_name: "mydb"
-    mariadb_db_file: "mydb.sql"
+    mariadb_root_password: "mypassword"
+    mariadb_db_name: "myuser"
+    mariadb_db_file: ""
   tasks:
     - name: Download and Extract existing WordPress site
       unarchive:
