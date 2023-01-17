@@ -1,0 +1,43 @@
+- name: Download and Extract existing WordPress site
+    unarchive:
+      src: /wordpress/numeration.tar.gz
+      dest: /var/www/html/
+      remote_src: true
+
+- name: Update Wordpress conf bd_name
+  replace:
+    path: /var/www/html/numeration/wp-config.php
+    regexp: 'bd_numeration'
+    replace: "{{ wp_db_name }}"
+
+- name: Update Wordpress conf bd_user
+  replace:
+    path: /var/www/html/numeration/wp-config.php
+    regexp: 'root'
+    replace: "{{ wp_db_user }}"
+
+- name: Update Wordpress conf bd_password
+  replace:
+    path: /var/www/html/numeration/wp-config.php
+    regexp: "''"
+    replace: "'{{ wp_db_password }}'"
+
+- name: Update Wordpress conf bd_host
+  replace:
+    path: /var/www/html/numeration/wp-config.php
+    regexp: 'localhost'
+    replace: "{{ wp_db_host }}"
+
+---
+### INTEGRATION BDD INTO BDD
+
+#- name: Deployment BDD into server BDD
+#  var:
+#    mariadb_root_password: "mypassword"
+#    mariadb_db_name: "myuser"
+#    mariadb_db_file: "wordpress/bd_numeration.tar.gz"
+#  tasks:
+
+- name: Import BDD_NUMERATION into BDD serve
+  shell: mysql -u root -p{{ mariadb_root_password }} {{ mariadb_db_name }} < {{ mariadb_db_file }}
+
