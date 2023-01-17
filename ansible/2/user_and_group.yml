@@ -1,10 +1,10 @@
 #TODO: Un Fichier Ansible + Spare les taches
-- name: Vérifier que le groupe 'devops' existe # nom de tache
+- name: Verifier que le groupe 'devops' existe # nom de tache
   group: # nom de module anisble
     name: devops
     state: present
 
-- name: Créer l'utilisateur 'user_wordpress'
+- name: Creer l'utilisateur 'user_wordpress'
   user:
     name: user_wordpress
     shell: /bin/bash
@@ -16,18 +16,18 @@
     groups: devops
     append: yes # Assigne au groupe dev sinon voir cours[chaque utilisateur a un groupe a son nom]
 
-- name: Ajouter user_wordpress à la liste de sudoers
+- name: Ajouter user_wordpress a la liste de sudoers
   become: yes
   become_user: user_wordpress
 
-- name: Créer un dossier 'www'
+- name: Creer un dossier 'www'
   file:
     path: /var/www
     state: directory
     mode: 0777 # user_wordpress owner|Groupe owner|Others => R4+W2+X1	[sur 3 + sticky bit au debut] => info:l'utilisateur qui a cree le file est defini par defaut dans ce cas par ansible
     group: devops
 
-- name: Définir le fichier de clé SSH autorisé pour l'utilisateur user_wordpress
+- name: Definir le fichier de cle SSH autorise pour l'utilisateur user_wordpress
   authorized_key:
     user: user_wordpress
     state: present
