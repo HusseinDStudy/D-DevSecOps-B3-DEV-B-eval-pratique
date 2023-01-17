@@ -107,8 +107,8 @@ CREATE TABLE `num69Wpoptions` (
 --
 
 INSERT INTO `num69Wpoptions` (`option_id`, `option_name`, `option_value`, `autoload`) VALUES
-(1, 'siteurl', 'http://numeration.loc', 'yes'),
-(2, 'home', 'http://numeration.loc', 'yes'),
+(1, 'siteurl', 'http://numeration.com', 'yes'),
+(2, 'home', 'http://numeration.com', 'yes'),
 (3, 'blogname', 'numeration', 'yes'),
 (4, 'blogdescription', '', 'yes'),
 (5, 'users_can_register', '0', 'yes'),

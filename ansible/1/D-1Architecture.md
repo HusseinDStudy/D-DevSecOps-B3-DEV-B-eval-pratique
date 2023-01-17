@@ -4,6 +4,14 @@
 - Nous utilisation Ansible pour la configuration des resources.
 - URL mise en place : [numeration](http://wwww.numeration.com)
 
+## Configuration du fichier host
+Accéder au fichier hosts de votre system 
+```shell
+nano /etc/hosts
+```
+> Ajouter à la fin de votre fichier :
+> 192.168.56.32      numeration.com
+
 ### Structure des fichiers :
 ```schell
 D-DevSecOps-B3-GDPROG-eval-pratique/
