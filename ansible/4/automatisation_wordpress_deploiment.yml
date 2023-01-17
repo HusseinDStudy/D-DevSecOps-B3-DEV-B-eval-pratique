@@ -10,6 +10,9 @@
     wp_url: numeration.com
     wp_title: numeration
     backup_dir: /path/to/backup/dir
+    mariadb_root_password: "password"
+    mariadb_db_name: "mydb"
+    mariadb_db_file: "mydb.sql"
   tasks:
     - name: Download and Extract existing WordPress site
       unarchive:
@@ -17,21 +20,30 @@
         dest: /var/www/html/
         remote_src: true
 
-    - name: Update existing WordPress config file
+    - name: Update Wordpress conf bd_name
       replace:
         path: /var/www/html/numeration/wp-config.php
-        regexp: 'database_name_here'
+        regexp: 'bd_numeration'
         replace: "{{ wp_db_name }}"
+
+    - name: Update Wordpress conf bd_user
       replace:
         path: /var/www/html/numeration/wp-config.php
-        regexp: 'username_here'
+        regexp: 'root'
         replace: "{{ wp_db_user }}"
+
+    - name: Update Wordpress conf bd_password
       replace:
         path: /var/www/html/numeration/wp-config.php
-        regexp: 'password_here'
-        replace: "{{ wp_db_password }}"
+        regexp: "''"
+        replace: "'{{ wp_db_password }}'"
+
+    - name: Update Wordpress conf bd_host
       replace:
         path: /var/www/html/numeration/wp-config.php
         regexp: 'localhost'
         replace: "{{ wp_db_host }}"
 
+### COPIES DE LA BDD SUR LE SERVER BDD
+    - name: Import MariaDB database
+      shell: mysql -u root -p{{ mariadb_root_password }} {{ mariadb_db_name }} < {{ mariadb_db_file }}
