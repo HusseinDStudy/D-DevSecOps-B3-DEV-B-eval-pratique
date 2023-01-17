@@ -11,7 +11,7 @@
     #- import_tasks: 3/multifactor_auth.yml
     #  - import_tasks: 4/web_app.yml
     #  - import_tasks: 4/sudoers.yml
-    #  - import_tasks: 5/firewall.yml
+    #  - import_tasks: 5/firewall_rules.yml
     #- import_tasks: 7/pam_pwquality.yml
   #handlers:
     #- import_tasks: handlers/restart_sshd.yml

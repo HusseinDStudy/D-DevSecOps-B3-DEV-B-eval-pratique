@@ -7,24 +7,3 @@
   community.general.ufw:
     logging: 'on'
 
-- community.general.ufw:
-    rule: deny
-    port: ssh
-    log: true
-
-- community.general.ufw:
-    rule: allow
-    port: ssh
-    log: true
-
-
-- community.general.ufw:
-    rule: limit
-    port: http
-    log: true
-
-
-- community.general.ufw:
-    rule: allow
-    port: https
-    log: true

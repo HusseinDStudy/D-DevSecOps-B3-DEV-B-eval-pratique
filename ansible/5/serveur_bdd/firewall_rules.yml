@@ -1,0 +1,10 @@
+- community.general.ufw:
+    rule: allow
+    port: ssh
+    proto: any
+    direction: in
+    src: IPServerWeb
+    from_port: PortServerWeb
+    dest: IPServerBDD
+    to_port: PortServerBDD
+    log: true

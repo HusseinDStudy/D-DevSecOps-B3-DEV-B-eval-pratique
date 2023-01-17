@@ -1,0 +1,22 @@
+- community.general.ufw:
+    rule: allow
+    port: ssh
+    proto: any
+    direction: in
+    log: true
+
+
+- community.general.ufw:
+    rule: limit
+    port: http
+    proto: any
+    direction: in
+    log: true
+
+
+- community.general.ufw:
+    rule: allow
+    port: https
+    proto: any
+    direction: in
+    log: true
