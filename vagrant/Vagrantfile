@@ -71,30 +71,59 @@
 #     end
 # end
 
-VAGRANTFILE_API_VERSION = "2"
+# VAGRANTFILE_API_VERSION = "2"
+#
+# cluster = {
+#   "http" => { :ip => "192.168.56.32", :mem => 2048 },
+#   "bdd" => { :ip => "192.168.56.36", :mem => 2048 }
+# }
+#
+# Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+#
+#   cluster.each_with_index do |(hostname, info), index|
+#
+#     config.vm.define hostname do |cfg|
+#       cfg.vm.provider :virtualbox do |vb, override|
+#         config.vm.box = "ubuntu/focal64"
+#         override.vm.network :private_network, ip: "#{info[:ip]}"
+#         override.vm.hostname = hostname
+#         vb.name = hostname
+#         vb.customize ["modifyvm", :id, "--memory", info[:mem], "--hwvirtex", "on"]
+#       end # end provider
+#     end # end config
+#  end # end cluster
 
-cluster = {
-  "http" => { :ip => "192.168.56.32", :mem => 2048 },
-  "bdd" => { :ip => "192.168.56.36", :mem => 2048 }
-}
+Vagrant.configure("2") do |config|
+  vms = {
+    "http" => { memory: 1024, cpus: 2, ip: "192.168.56.32" },
+    "bdd" => { memory: 2048, cpus: 4, ip: "192.168.56.36" }
+  }
+  vms.each do |vm_name, vm_config|
+    config.vm.define vm_name do |node|
 
-Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+      node.vm.box = "jharoian3/ubuntu-20.04-arm64"
 
-  cluster.each_with_index do |(hostname, info), index|
+      node.vm.provider "parallels" do |prl|
+        prl.name = vm_name
+        prl.memory = vm_config[:memory]
+        prl.cpus = vm_config[:cpus]
+      end
 
-    config.vm.define hostname do |cfg|
-      cfg.vm.provider :virtualbox do |vb, override|
-        config.vm.box = "ubuntu/focal64"
-        override.vm.network :private_network, ip: "#{info[:ip]}"
-        override.vm.hostname = hostname
-        vb.name = hostname
-        vb.customize ["modifyvm", :id, "--memory", info[:mem], "--hwvirtex", "on"]
-      end # end provider
-    end # end config
+      # configuration du resseaux priver
+      node.vm.network "private_network", ip: vm_config[:ip]
 
-  end # end cluster
-  config.vm.provision "ansible" do |ansible|
-      ansible.playbook = "../ansible/site.yml"
-      ansible.compatibility_mode = "2.0"
-  end
-end
+      # configuration des ports de redirection
+      if vm_name == 'http'
+              node.vm.network "forwarded_port", guest: 80, host: 8080
+      elsif vm_name == 'bdd'
+              node.vm.network "forwarded_port", guest: 3306, host: 3306
+      end # endif
+
+    end # VM conf
+  end # endEcho
+
+#   config.vm.provision "ansible" do |ansible|
+#       ansible.playbook = "../ansible/site.yml"
+#       ansible.compatibility_mode = "2.0"
+#   end
+end # end cluster
