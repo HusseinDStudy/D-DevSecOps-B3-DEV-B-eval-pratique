@@ -6,31 +6,41 @@
 
 ### Structure des fichiers :
 ```schell
-D-DevSecOps-B3-GDPROG-eval-pratique/
-├── ansible/
-│   ├── /1
-│   │   └──D-1Architecture.md
-│   ├── /2
-│   │   └── user_and_group.ymal
-│   ├── /3
-│   │   ├── wordpress/
-│   │   │   ├── bd_numeration.sql
-│   │   │   └── numeration.tar.gz
-│   │   └── dependences_wordpress.yml
-│   ├── /5
-│   │   ├── 
-│   │   └──
-│   ├── /6
-│   │   ├── 
-│   │   └──
-│   ├── /7
-│   │   └──
-│   └── /site.yml
-├── vagrant/
-│   ├── /.vagrant
-│   └── Vagrantfile
+D-DevSecOps-B3-GDPROG-eval-pratique
 ├── LICENSE
-└── README.md
+├── README.md
+├── ansible
+│   ├── 1
+│   │   └── D-1Architecture.md
+│   ├── 2
+│   │   └── user_and_group.yml
+│   ├── 3
+│   │   ├── dependences_bdd.yml
+│   │   └── dependences_wordpress.yml
+│   ├── 4
+│   │   ├── automatisation_wordpress_bdd.yml
+│   │   ├── automatisation_wordpress_deploiment.yml
+│   │   └── wordpress
+│   │       ├── bd_numeration.sql
+│   │       └── numeration.tar.gz
+│   ├── 5
+│   │   ├── serveur_bdd
+│   │   │   └── firewall_rules.yml
+│   │   ├── serveur_web
+│   │   │   └── firewall_rules.yml
+│   │   └── ufw_install.yml
+│   ├── 7
+│   │   └── pam_pwquality.yml
+│   ├── site.yml
+│   └── var_file.yml
+└── vagrant
+    ├── Vagrantfile
+    └── ssh_keys
+        ├── devsecops
+        └── devsecops.pub
+
+13 directories, 19 files
+
 ```
 
 ### Vagrant configuration
