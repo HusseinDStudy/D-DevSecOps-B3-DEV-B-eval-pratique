@@ -3,8 +3,8 @@
     port: ssh
     proto: any
     direction: in
-    src: IPServerWeb
-    from_port: PortServerWeb
-    dest: IPServerBDD
-    to_port: PortServerBDD
+    src: 192.168.56.32
+    from_port: 8080
+    dest: 192.168.56.36
+    to_port: 80
     log: true

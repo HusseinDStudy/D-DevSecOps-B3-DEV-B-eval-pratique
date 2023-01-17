@@ -21,9 +21,13 @@
     wp_admin_password: admin_password
     wp_admin_email: admin@example.com
     wp_url: numeration.com
-    wp_title: numerations
+    wp_title: numeration
+    mariadb_root_password: "mypassword"
+    mariadb_db_name: "myuser"
+    mariadb_db_file: "wordpress/bd_numeration.tar.gz"
   tasks:
-    - import_tasks: 3/dependences_wordpress_final.yml
+    - import_tasks: 3/dependences_wordpress.yml
+    - import_tasks: 4/automatisation_wordpress_deploiment.yml
 
 - name: BDD Numerisationq
   hosts: bdd # Numerisation
@@ -39,6 +43,7 @@
     wp_admin_password: admin_password
     wp_admin_email: admin@example.com
     wp_url: numeration.com
-    wp_title: numerations
+    wp_title: numeration
   tasks:
     - import_tasks: 3/dependences_bdd.yml
+    - import_tasks: 4/automatisation_wordpress_bdd.yml

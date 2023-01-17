@@ -1,0 +1,2 @@
+- name: Import BDD_NUMERATION into BDD serve
+  shell: mysql -u root -p{{ mariadb_root_password }} {{ mariadb_db_name }} < {{ mariadb_db_file }}

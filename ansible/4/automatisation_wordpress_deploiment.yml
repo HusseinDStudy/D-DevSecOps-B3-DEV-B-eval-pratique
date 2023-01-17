@@ -1,8 +1,13 @@
-- name: Download and Extract existing WordPress site
-    unarchive:
-      src: /wordpress/numeration.tar.gz
-      dest: /var/www/html/
-      remote_src: true
+- name: Copier de wordpress sur la VM
+  copy:
+    src: wordpress/numeration.tar.gz
+    dest: /var/www/html/
+
+- name: zip Word Press
+  unarchive:
+    src:  /var/www/html/
+    dest: /var/www/html/
+    remote_src: true
 
 - name: Update Wordpress conf bd_name
   replace:
@@ -28,16 +33,7 @@
     regexp: 'localhost'
     replace: "{{ wp_db_host }}"
 
----
-### INTEGRATION BDD INTO BDD
-
-#- name: Deployment BDD into server BDD
-#  var:
-#    mariadb_root_password: "mypassword"
-#    mariadb_db_name: "myuser"
-#    mariadb_db_file: "wordpress/bd_numeration.tar.gz"
-#  tasks:
-
-- name: Import BDD_NUMERATION into BDD serve
-  shell: mysql -u root -p{{ mariadb_root_password }} {{ mariadb_db_name }} < {{ mariadb_db_file }}
-
+- name: Remove index default apache
+  file:
+    path: /var/www/html/
+    state: absent
