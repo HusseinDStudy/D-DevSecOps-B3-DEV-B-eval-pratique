@@ -23,7 +23,7 @@
   become_method: sudo
   remote_user: ubuntu
   tasks:
-    - import_tasks: 3/dependences_wordpress.yml
+    - import_tasks: 3/dependences_wordpress_final.yml
 
 - name: BDD Numerisation
   hosts: bddNumerisation

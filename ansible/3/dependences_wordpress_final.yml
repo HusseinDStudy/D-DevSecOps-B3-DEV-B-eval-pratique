@@ -1,0 +1,40 @@
+- name: Install and configure WordPress
+  hosts: httpNumerisation
+  become: true
+  vars:
+    wp_db_name: mydb
+    wp_db_user: myuser
+    wp_db_password: mypassword
+    wp_db_host: localhost
+    wp_admin_user: admin
+    wp_admin_password: admin_password
+    wp_admin_email: admin@example.com
+    wp_url: numeration.com
+    wp_title: numeration
+  tasks:
+    - name: "Install apache2"
+      package: name=apache2 state=present
+    - name: "Install apache2-php7.4"
+      package: name=libapache2-mod-php7.4 state=present
+    - name: "Install php7.4-cli"
+      package: name=php7.4-cli state=present
+    - name: "Install php7.4-mcrypt"
+      package: name=php7.4-mcrypt state=present
+    - name: "Install php7.4-gd"
+      package: name=php7.4-gd state=present
+    - name: Install php7.4-fpm
+      package: name=php7.4-fpm state=present
+    - name: Install php7.4-common
+      package: name=php7.4-common state=present
+    - name: Install php7.4-mbstring
+      package: name=php7.4-mbstring state=present
+    - name: Install php7.4-xmlrpc
+      package: name=php7.4-xmlrpc state=present
+    - name: Install php7.4-xml
+      package: name=php7.4-xml state=present
+    - name: Install php7.4-mysql
+      package: name=php7.4-mysql state=present
+    - name: Install php7.4-zip
+      package: name=php7.4-zip state=present
+    - name: Install php7.4-curl
+      package: name=php7.4-curl state=present
