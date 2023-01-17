@@ -6,34 +6,14 @@
   remote_user: ubuntu
   tasks:
     - import_tasks: 2/user_and_group.yml
-    #- import_tasks: 4/automatisation_wordpress_deploiment.yml
-    #- import_tasks: 3/authorized_keys.yml
-    #- import_tasks: 3/multifactor_auth.yml
-    #  - import_tasks: 4/web_app.yml
-    #  - import_tasks: 4/sudoers.yml
-    #  - import_tasks: 5/firewall_rules.yml
-    #- import_tasks: 7/pam_pwquality.yml
-  #handlers:
-    #- import_tasks: handlers/restart_sshd.yml
-
 
 - name: HTTP Numerisation
   hosts: http # Numerisation
   become: yes
   become_method: sudo
   remote_user: ubuntu
-  vars:
-    wp_db_name: mydb
-    wp_db_user: myuser
-    wp_db_password: mypassword
-    wp_db_host: localhost
-    wp_admin_user: admin
-    wp_admin_password: admin_password
-    wp_admin_email: admin@example.com
-    wp_url: numeration.com
-    wp_title: numerations
   tasks:
-    - import_tasks: 3/dependences_wordpress.yml
+    - import_tasks: 3/dependences_wordpress_final.yml
 
 - name: BDD Numerisationq
   hosts: bdd # Numerisation
