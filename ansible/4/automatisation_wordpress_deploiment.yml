@@ -12,7 +12,7 @@
     backup_dir: /path/to/backup/dir
     mariadb_root_password: "mypassword"
     mariadb_db_name: "myuser"
-    mariadb_db_file: ""
+    mariadb_db_file: "wordpress/bd_numeration.tar.gz  "
   tasks:
     - name: Download and Extract existing WordPress site
       unarchive:

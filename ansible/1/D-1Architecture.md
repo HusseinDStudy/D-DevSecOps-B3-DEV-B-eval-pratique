@@ -13,6 +13,8 @@ D-DevSecOps-B3-GDPROG-eval-pratique/
 │   ├── /2
 │   │   └── user_and_group.ymal
 │   ├── /3
+│   │   ├── wordpress/
+
 │   │   └── dependences_wordpress.yml
 │   ├── /5
 │   │   ├── 
