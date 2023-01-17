@@ -9,10 +9,7 @@
     wp_db_host: localhost
     wp_url: numeration.com
     wp_title: numeration
-    backup_dir: /path/to/backup/dir
-    mariadb_root_password: "mypassword"
-    mariadb_db_name: "myuser"
-    mariadb_db_file: "wordpress/bd_numeration.tar.gz  "
+
   tasks:
     - name: Download and Extract existing WordPress site
       unarchive:
@@ -45,8 +42,15 @@
         replace: "{{ wp_db_host }}"
 
 ---
+### INTEGRATION BDD INTO BDD
 - name: Deployment BDD into server BDD
   host: bdd_numeration
   become: yes
   var:
-    
+    mariadb_root_password: "mypassword"
+    mariadb_db_name: "myuser"
+    mariadb_db_file: "wordpress/bd_numeration.tar.gz"
+  tasks:
+    - name: Import BDD_NUMERATION into BDD serve
+      shell: mysql -u root -p{{ mariadb_root_password }} {{ mariadb_db_name }} < {{ mariadb_db_file }}
+
