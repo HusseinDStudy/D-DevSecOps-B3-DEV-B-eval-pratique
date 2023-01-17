@@ -1,5 +1,6 @@
 # D-DevSecOps-B3-GDPROG--val-pratique
-
+# Provider
+> Cette version fonctionne également sur Parallels, avec une puce de mac M1
 ```shell
 git checkout name/function
 git add /path/to/file/to/add
