@@ -16,7 +16,7 @@
     groups: devops
     append: yes # Assigne au groupe dev sinon voir cours[chaque utilisateur a un groupe a son nom]
 
-- name:  Ajouter user_wordpress à la liste de sudoers
+- name: Ajouter user_wordpress à la liste de sudoers
   become: yes
   become_user: user_wordpress
 

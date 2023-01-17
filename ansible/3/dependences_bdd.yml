@@ -1,5 +1,5 @@
 - name: Install and configure MySQL server
-  hosts: all
+  hosts: bddNumerisation
   become: true
   vars:
     wp_db_name: mydb

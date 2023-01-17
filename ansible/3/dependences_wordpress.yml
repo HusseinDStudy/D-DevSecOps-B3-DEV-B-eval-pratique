@@ -1,5 +1,5 @@
   - name: Install and configure WordPress
-    hosts: all
+    hosts: httpNumerisation
     become: true
     vars:
       wp_db_name: mydb
