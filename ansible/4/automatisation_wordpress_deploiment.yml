@@ -1,37 +1,48 @@
+- include_vars: ../var_file.yml
+
 - name: Copier de wordpress sur la VM
   copy:
     src: wordpress/numeration.tar.gz
-    dest: /var/www/html/
+    dest: /var/www/
 
-- name: zip Word Press
+- name: Decompression du rep Word Press
   unarchive:
-    src:  /var/www/html/
-    dest: /var/www/html/
+    src:  /var/www/numeration.tar.gz
+    dest: /var/www/
     remote_src: true
+
+- name: Rename wp-config-sample en wp-config
+  command: mv /var/www/numeration/wp-config-sample.php  /var/www/numeration/wp-config.php
 
 - name: Update Wordpress conf bd_name
   replace:
-    path: /var/www/html/numeration/wp-config.php
-    regexp: 'bd_numeration'
+    path: /var/www/numeration/wp-config.php
+    regexp: 'votre_nom_de_bdd'
     replace: "{{ wp_db_name }}"
 
 - name: Update Wordpress conf bd_user
   replace:
-    path: /var/www/html/numeration/wp-config.php
-    regexp: 'root'
+    path: /var/www/numeration/wp-config.php
+    regexp: 'votre_utilisateur_de_bdd'
     replace: "{{ wp_db_user }}"
 
 - name: Update Wordpress conf bd_password
   replace:
-    path: /var/www/html/numeration/wp-config.php
-    regexp: "''"
-    replace: "'{{ wp_db_password }}'"
+    path: /var/www/numeration/wp-config.php
+    regexp: 'votre_mdp_de_bdd'
+    replace: "{{ wp_db_password }}"
 
 - name: Update Wordpress conf bd_host
   replace:
-    path: /var/www/html/numeration/wp-config.php
+    path: /var/www/numeration/wp-config.php
     regexp: 'localhost'
     replace: "{{ wp_db_host }}"
+
+- name: Update Wordpress conf table_prefix
+  replace:
+    path: /var/www/numeration/wp-config.php
+    regexp: 'wp_'
+    replace: "{{ wp_prefix }}"
 
 - name: Remove index default apache
   file:
