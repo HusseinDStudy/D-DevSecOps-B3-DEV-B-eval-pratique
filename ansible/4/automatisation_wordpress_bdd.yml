@@ -1,2 +1,17 @@
-- name: Import BDD_NUMERATION into BDD serve
-  shell: mysql -u root -p{{ mariadb_root_password }} {{ mariadb_db_name }} < {{ mariadb_db_file }}
+- include_vars: ../var_file.yml
+
+- name: Copie du script sql de la bdd wordPress
+  copy:
+    src: wordpress/bd_numeration.sql
+    dest: /home/vagrant
+
+- name: Création de la basse de donnée
+  become: true
+  mysql_db:
+    name: "{{db_name}}"
+    state: present
+    login_user: "{{db_user}}"
+    login_password: "{{root_password}}"
+
+- name: Import de la BDD wordPress
+  shell: mysql -u {{db_user}} -p{{ root_password }} {{ db_name }} < {{ db_file }}
