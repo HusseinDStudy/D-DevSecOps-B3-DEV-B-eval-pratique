@@ -21,6 +21,7 @@ D-DevSecOps-B3-GDPROG-eval-pratique
 │   │   ├── automatisation_wordpress_bdd.yml
 │   │   ├── automatisation_wordpress_deploiment.yml
 │   │   └── wordpress
+│   │       ├── apache.conf.j2
 │   │       ├── bd_numeration.sql
 │   │       └── numeration.tar.gz
 │   ├── 5
@@ -39,7 +40,7 @@ D-DevSecOps-B3-GDPROG-eval-pratique
         ├── devsecops
         └── devsecops.pub
 
-13 directories, 19 files
+13 directories, 20 files
 
 ```
 

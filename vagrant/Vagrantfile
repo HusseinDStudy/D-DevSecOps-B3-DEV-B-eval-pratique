@@ -89,3 +89,45 @@ end
 #       ansible.compatibility_mode = "2.0"
 #   end
 # end # end cluster
+
+
+#####################################
+#########[Machine MAC M1]############
+#####################################
+
+
+Vagrant.configure("2") do |config|
+  vms = {
+    "http" => { memory: 2048, cpus: 2, ip: "192.168.56.32" },
+    "bdd" => { memory: 2048, cpus: 4, ip: "192.168.56.36" }
+  }
+  vms.each do |vm_name, vm_config|
+    config.vm.define vm_name do |node|
+
+      node.vm.box = "jharoian3/ubuntu-20.04-arm64"
+
+      node.vm.provider "parallels" do |prl|
+        prl.name = vm_name
+        prl.memory = vm_config[:memory]
+        prl.cpus = vm_config[:cpus]
+      end
+
+      # configuration du resseaux priver
+      node.vm.network "private_network", ip: vm_config[:ip]
+
+      # configuration des ports de redirection
+      if vm_name == 'http'
+              node.vm.network "forwarded_port", guest: 80, host: 8080
+
+      elsif vm_name == 'bdd'
+              node.vm.network "forwarded_port", guest: 3306, host: 3306
+      end # endif
+
+    end # VM conf
+  end # endEcho
+  # Appel de ansible
+  config.vm.provision "ansible" do |ansible|
+      ansible.playbook = "../ansible/site.yml"
+      ansible.compatibility_mode = "2.0"
+  end
+end # end cluster

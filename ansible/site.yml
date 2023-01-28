@@ -6,6 +6,7 @@
   remote_user: ubuntu
   tasks:
     - import_tasks: 2/user_and_group.yml
+    - import_tasks: 5/ufw_install.yml
 
 - name: HTTP Numerisation
   hosts: http # Numerisation
@@ -15,6 +16,7 @@
   tasks:
     - import_tasks: 3/dependences_wordpress.yml
     - import_tasks: 4/automatisation_wordpress_deploiment.yml
+    - import_tasks: 5/serveur_web/firewall_rules.yml
 
 - name: BDD Numerisationq
   hosts: bdd # Numerisation
@@ -26,3 +28,4 @@
   tasks:
     - import_tasks: 3/dependences_bdd.yml
     - import_tasks: 4/automatisation_wordpress_bdd.yml
+    - import_tasks: 5/serveur_bdd/firewall_rules.yml
