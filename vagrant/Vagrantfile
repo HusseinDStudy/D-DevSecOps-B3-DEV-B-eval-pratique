@@ -5,93 +5,49 @@
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
-# Vagrant.configure("2") do |config|
-#     config.vm.box = "ubuntu/focal64"
-    #config.vm.hostname = "numerisation"
-#     config.vm.network "private_network", type: "dhcp"
-
-#     config.vm.define "http_numerisation" do |http|
-#         http.vm.box = "ubuntu/focal64"
-#         http.vm.hostname = "httpNumerisation"
-#         http.vm.network "private_network", ip: "192.168.56.32"
-#         http.vm.provider "virtualbox" do |vb_http|
-#             vb_http.memory = "2048"
-#             vb_http.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
-#             vb_http.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]
-#             vb_http.customize ["modifyvm", :id, "--cableconnected1", "on"]
-#         end
-#     end
-#     config.vm.define "bdd_numerisation" do |bdd|
-#         bdd.vm.box = "ubuntu/focal64"
-#         bdd.vm.hostname = "bddNumerisation"
-#         bdd.vm.network "private_network", ip: "192.168.56.36"
-#         bdd.vm.provider "virtualbox" do |vb_bdd|
-#             vb_bdd.memory = "2048"
-#             vb_bdd.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
-#             vb_bdd.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]
-#             vb_bdd.customize ["modifyvm", :id, "--cableconnected1", "on"]
-#         end
-#     end
-
-#     config.vm.provider "virtualbox" do |vb|
-#         vb.memory = "2048"
-#         vb.name = "httpNumerisation"
-#
-#         vb.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
-#         vb.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]
-#         vb.customize ["modifyvm", :id, "--cableconnected1", "on"]
-#
-#         config.vm.define "http" do |http|
-#                 http.vm.hostname = "http"
-#                 http.vm.network "private_network", ip: "192.168.56.10"
-#         #         http.vm.provision "shell", path: "http.sh"
-#             end
-#     end
 
 
-#     config.vm.provider "virtualbox" do |vb|
-#         vb.memory = "1024"
-#         vb.name = "bddNumerisation1"
-#
-#         vb.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
-#         vb.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]
-#         vb.customize ["modifyvm", :id, "--cableconnected1", "on"]
-#
-#          config.vm.define "bdd" do |bdd|
-#                 bdd.vm.hostname = "bdd"
-#                 bdd.vm.network "private_network", ip: "192.168.56.11"
-#         #         bdd.vm.provision "shell", path: "bdd.sh"
-#             end
-#     end
+#####################################
+########[Used Customs BEFORE]########
+#####################################
 
 
-#     config.vm.provision "ansible" do |ansible|
-#         ansible.playbook = "../ansible/site.yml"
-#         ansible.compatibility_mode = "2.0"
-#     end
-# end
+# vb_http.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
+# vb_http.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]
+# vb_http.customize ["modifyvm", :id, "--cableconnected1", "on"]
 
-# VAGRANTFILE_API_VERSION = "2"
-#
-# cluster = {
-#   "http" => { :ip => "192.168.56.32", :mem => 2048 },
-#   "bdd" => { :ip => "192.168.56.36", :mem => 2048 }
-# }
-#
-# Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-#
-#   cluster.each_with_index do |(hostname, info), index|
-#
-#     config.vm.define hostname do |cfg|
-#       cfg.vm.provider :virtualbox do |vb, override|
-#         config.vm.box = "ubuntu/focal64"
-#         override.vm.network :private_network, ip: "#{info[:ip]}"
-#         override.vm.hostname = hostname
-#         vb.name = hostname
-#         vb.customize ["modifyvm", :id, "--memory", info[:mem], "--hwvirtex", "on"]
-#       end # end provider
-#     end # end config
-#  end # end cluster
+
+#####################################
+#######[Virtual  Box Machine]########
+#####################################
+
+
+VAGRANTFILE_API_VERSION = "2"
+
+cluster = {
+  "http" => { :ip => "192.168.56.32", :mem => 2048 },
+  "bdd" => { :ip => "192.168.56.36", :mem => 2048 }
+}
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  cluster.each_with_index do |(hostname, info), index|
+
+    config.vm.define hostname do |cfg|
+      cfg.vm.provider :virtualbox do |vb, override|
+        config.vm.box = "ubuntu/focal64"
+        override.vm.network :private_network, ip: "#{info[:ip]}"
+        override.vm.hostname = hostname
+        vb.name = hostname
+        vb.customize ["modifyvm", :id, "--memory", info[:mem], "--hwvirtex", "on"]
+      end # end provider
+    end # end config
+  end # end cluster
+  config.vm.provision "ansible" do |ansible|
+      ansible.playbook = "../ansible/site.yml"
+      ansible.compatibility_mode = "2.0"
+  end
+end
 
 
 #####################################
@@ -99,37 +55,37 @@
 #####################################
 
 
-Vagrant.configure("2") do |config|
-  vms = {
-    "http" => { memory: 2048, cpus: 2, ip: "192.168.56.32" },
-    "bdd" => { memory: 2048, cpus: 4, ip: "192.168.56.36" }
-  }
-  vms.each do |vm_name, vm_config|
-    config.vm.define vm_name do |node|
-
-      node.vm.box = "jharoian3/ubuntu-20.04-arm64"
-
-      node.vm.provider "parallels" do |prl|
-        prl.name = vm_name
-        prl.memory = vm_config[:memory]
-        prl.cpus = vm_config[:cpus]
-      end
-
-      # configuration du resseaux priver
-      node.vm.network "private_network", ip: vm_config[:ip]
-
-      # configuration des ports de redirection
-      if vm_name == 'http'
-              node.vm.network "forwarded_port", guest: 80, host: 8080
-      elsif vm_name == 'bdd'
-              node.vm.network "forwarded_port", guest: 3306, host: 3306
-      end # endif
-
-    end # VM conf
-  end # endEcho
-  # Appel de ansible
-  config.vm.provision "ansible" do |ansible|
-      ansible.playbook = "../ansible/site.yml"
-      ansible.compatibility_mode = "2.0"
-  end
-end # end cluster
+# Vagrant.configure("2") do |config|
+#   vms = {
+#     "http" => { memory: 2048, cpus: 2, ip: "192.168.56.32" },
+#     "bdd" => { memory: 2048, cpus: 4, ip: "192.168.56.36" }
+#   }
+#   vms.each do |vm_name, vm_config|
+#     config.vm.define vm_name do |node|
+#
+#       node.vm.box = "jharoian3/ubuntu-20.04-arm64"
+#
+#       node.vm.provider "parallels" do |prl|
+#         prl.name = vm_name
+#         prl.memory = vm_config[:memory]
+#         prl.cpus = vm_config[:cpus]
+#       end
+#
+#       # configuration du resseaux priver
+#       node.vm.network "private_network", ip: vm_config[:ip]
+#
+#       # configuration des ports de redirection
+#       if vm_name == 'http'
+#               node.vm.network "forwarded_port", guest: 80, host: 8080
+#       elsif vm_name == 'bdd'
+#               node.vm.network "forwarded_port", guest: 3306, host: 3306
+#       end # endif
+#
+#     end # VM conf
+#   end # endEcho
+#   # Appel de ansible
+#   config.vm.provision "ansible" do |ansible|
+#       ansible.playbook = "../ansible/site.yml"
+#       ansible.compatibility_mode = "2.0"
+#   end
+# end # end cluster

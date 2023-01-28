@@ -25,3 +25,4 @@
     - var_file.yml
   tasks:
     - import_tasks: 3/dependences_bdd.yml
+    - import_tasks: 4/automatisation_wordpress_bdd.yml
