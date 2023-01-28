@@ -48,3 +48,17 @@
   file:
     path: /var/www/html/
     state: absent
+
+- name: Configuration de la route apache
+  template:
+    src: wordpress/apache.conf.j2
+    dest: /etc/apache2/sites-available/000-default.conf
+    owner: root
+    group: root
+    mode: 0644
+
+
+- name: Restart apache
+  service:
+    name: apache2
+    state: restarted
