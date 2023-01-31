@@ -1,0 +1,24 @@
+#- name : Configuration du par-feux de la bbd
+#  community.general.ufw:
+#    rule: allow
+#    port: 3306
+#    proto: tcp
+#    direction: in
+#    src: 192.168.56.32
+#    from_port: 8080
+#    dest: 192.168.56.36
+#    to_port: 3306
+#    log: true
+
+
+- name: Ajout d'un acces sur le prot 3306
+  ufw:
+    rule: allow
+    port: 3306
+    proto: tcp
+    src : 192.168.56.32
+    direction: in
+    log: yes
+    state: enabled
+
+

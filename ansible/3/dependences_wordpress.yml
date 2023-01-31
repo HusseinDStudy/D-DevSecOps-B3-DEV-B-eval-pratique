@@ -1,0 +1,32 @@
+- name: Apt-update
+  become: true
+  apt:
+    upgrade: yes
+    update_cache: yes
+
+- name: Install apache2
+  package: name=apache2 state=present
+
+- name: Install apache2-php7.4
+  package: name=libapache2-mod-php7.4 state=present
+
+- name: Install php7.4-cli
+  package: name=php7.4-cli state=present
+
+- name: Install php7.4-gd
+  package: name=php7.4-gd state=present
+
+- name: Install php7.4-common
+  package: name=php7.4-common state=present
+
+- name: Install php7.4-xmlrpc
+  package: name=php7.4-xmlrpc state=present
+
+- name: Install php7.4-xml
+  package: name=php7.4-xml state=present
+
+- name: Install php7.4-mysql
+  package: name=php7.4-mysql state=present
+
+- name: Install php7.4-curl
+  package: name=php7.4-curl state=present

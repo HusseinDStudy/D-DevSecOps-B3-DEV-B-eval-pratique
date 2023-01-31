@@ -1,0 +1,70 @@
+- include_vars: ../var_file.yml
+
+- name: Apt-update
+  become: true
+  apt:
+    upgrade: yes
+    update_cache: yes
+
+- name: Install MySQL server
+  apt:
+    name: mysql-server
+    state: present
+
+- name: Install du package python et pip
+  apt:
+    name:
+      - python
+      - pip
+    state: present
+
+- name: Install du module python
+  pip:
+    name: PyMySQL
+    state: present
+
+- name: Ensure mysql is running and starts on boot
+  service:
+    name: mysql
+    state: started
+    enabled: yes
+  become: yes
+
+- name: Crée l'utilisateur pour le wordPress
+
+  mysql_user:
+    name: "{{db_user}}"
+    host: localhost
+    password: "{{root_password}}"
+    priv: "*.*:ALL"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    login_user: root
+    login_password:
+    state: present
+  become: true
+
+- name: Configure un accès distance sur la bdd
+  become: true
+  become_user: root
+  lineinfile:
+    dest: /etc/mysql/mysql.conf.d/mysqld.cnf
+    regexp: '^bind-address'
+    line: 'bind-address = 192.168.56.32'
+
+- name: Restart Mysql
+  become: true
+  service:
+    name: mysql
+    state: restarted
+
+- name: supprime le root
+
+  mysql_user:
+    name: root
+    host: localhost
+    password:
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    login_user: root
+    login_password:
+    state: absent
+  become: true

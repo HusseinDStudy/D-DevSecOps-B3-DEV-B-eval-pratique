@@ -1,0 +1,34 @@
+- name:  Configuration du par-feux du serveur web [SSH]
+  community.general.ufw:
+    rule: allow
+    port: 22
+    proto: tcp
+    direction: in
+    log: true
+
+- name:  Configuration du par-feux du serveur web [http]
+  community.general.ufw:
+    rule: allow
+    port: 80
+    proto: tcp
+    direction: in
+    log: true
+
+
+- name:  Configuration du par-feux du serveur web [https]
+  community.general.ufw:
+    rule: allow
+    port: 443
+    proto: tcp
+    direction: in
+    log: true
+
+- name:  Configuration du par-feux du serveur web [mySql]
+  community.general.ufw:
+    rule: allow
+    port: 3306
+    proto: tcp
+    direction: in
+    src: 192.168.56.36
+    log: true
+

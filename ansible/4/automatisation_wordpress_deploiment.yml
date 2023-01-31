@@ -1,0 +1,64 @@
+- include_vars: ../var_file.yml
+
+- name: Copier de wordpress sur la VM
+  copy:
+    src: wordpress/numeration.tar.gz
+    dest: /var/www/
+
+- name: Decompression du rep Word Press
+  unarchive:
+    src:  /var/www/numeration.tar.gz
+    dest: /var/www/
+    remote_src: true
+
+- name: Rename wp-config-sample en wp-config
+  command: mv /var/www/numeration/wp-config-sample.php  /var/www/numeration/wp-config.php
+
+- name: Update Wordpress conf bd_name
+  replace:
+    path: /var/www/numeration/wp-config.php
+    regexp: 'votre_nom_de_bdd'
+    replace: "{{ wp_db_name }}"
+
+- name: Update Wordpress conf bd_user
+  replace:
+    path: /var/www/numeration/wp-config.php
+    regexp: 'votre_utilisateur_de_bdd'
+    replace: "{{ wp_db_user }}"
+
+- name: Update Wordpress conf bd_password
+  replace:
+    path: /var/www/numeration/wp-config.php
+    regexp: 'votre_mdp_de_bdd'
+    replace: "{{ wp_db_password }}"
+
+- name: Update Wordpress conf bd_host
+  replace:
+    path: /var/www/numeration/wp-config.php
+    regexp: 'localhost'
+    replace: "{{ wp_db_host }}"
+
+- name: Update Wordpress conf table_prefix
+  replace:
+    path: /var/www/numeration/wp-config.php
+    regexp: 'wp_'
+    replace: "{{ wp_prefix }}"
+
+- name: Remove index default apache
+  file:
+    path: /var/www/html/
+    state: absent
+
+- name: Configuration de la route apache
+  template:
+    src: wordpress/apache.conf.j2
+    dest: /etc/apache2/sites-available/000-default.conf
+    owner: root
+    group: root
+    mode: 0644
+
+
+- name: Restart apache
+  service:
+    name: apache2
+    state: restarted
