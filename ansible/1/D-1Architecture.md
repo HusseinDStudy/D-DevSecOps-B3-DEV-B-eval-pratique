@@ -49,10 +49,3 @@ D-DevSecOps-B3-GDPROG-eval-pratique
 | Serveur VM #1                              | Interconnection                                   | Serveur VM #2                                    |
 |--------------------------------------------|---------------------------------------------------|--------------------------------------------------|
 | <div style="margin: auto;">WEB(HTTP)</div> | <span style="color:#eab676" ><===========></span> | <div style="width: 50%; margin: auto;">BDD</div> |
-
-### Command execution sur le bureau
-```Shell
-cd ~desktop/vagrant
-vagrant up
-vagrant ssh
-```
