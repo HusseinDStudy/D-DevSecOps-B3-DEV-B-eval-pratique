@@ -1,0 +1,5 @@
+- name: Definir le fichier de cle SSH autorise pour utilisateur user_wordpress
+  authorized_key:
+    user: user_wordpress
+    state: present
+    key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/devsecops.pub') }}"

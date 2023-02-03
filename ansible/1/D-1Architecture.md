@@ -14,6 +14,9 @@ D-DevSecOps-B3-GDPROG-eval-pratique
 │   │   └── D-1Architecture.md
 │   ├── 2
 │   │   └── user_and_group.yml
+│   │   └── enable_sudo.yml
+│   │   └── folder_for_website_deployment.yml
+│   │   └── ssh_keys.yml
 │   ├── 3
 │   │   ├── dependences_bdd.yml
 │   │   └── dependences_wordpress.yml
