@@ -1,9 +1,9 @@
 - name: Allow everything and enable UFW
-  community.general.ufw:
+  ufw:
     state: enabled
     policy: allow
 
 - name: Set logging
-  community.general.ufw:
+  ufw:
     logging: 'on'
 

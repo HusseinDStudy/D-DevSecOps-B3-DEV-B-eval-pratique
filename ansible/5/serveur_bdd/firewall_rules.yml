@@ -10,9 +10,8 @@
 #    to_port: 3306
 #    log: true
 
-
 - name: Ajout d'un acces sur le prot 3306
-  ufw:
+  community.general.ufw:
     rule: allow
     port: 3306
     proto: tcp
@@ -20,5 +19,3 @@
     direction: in
     log: yes
     state: enabled
-
-

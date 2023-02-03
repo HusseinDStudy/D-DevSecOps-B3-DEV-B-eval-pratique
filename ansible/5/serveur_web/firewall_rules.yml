@@ -14,7 +14,6 @@
     direction: in
     log: true
 
-
 - name:  Configuration du par-feux du serveur web [https]
   community.general.ufw:
     rule: allow
@@ -31,4 +30,3 @@
     direction: in
     src: 192.168.56.36
     log: true
-
