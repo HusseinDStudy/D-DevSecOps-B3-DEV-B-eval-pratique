@@ -15,19 +15,19 @@
 # Étape de configuration du wordPress :
 > <span style="color:red"> Placer vous dans le répertoire du projet !</span>
 ### Securité :
-> <span style="color:red"> Il fait modifier les mots de passe dans le var_file.yml afin de Sécurisé son system !</span>
+> <span style="color:red"> Il faut modifier les mots de passe dans le var_file.yml afin de sécuriser son système !</span>
 
 ```shell
 # déplacer le fichier de clé ssh dans votre dossier publique
 mv vagrant/ssh_keys/* ~/.ssh/
 
-# On déplace le terminal dans le rep vagrant
+# On déplace le terminal dans le répertoire vagrant
 cd vagrant/
 
-# Puis on execute le vagrant fille
+# Puis on execute le vagrant file
 vagrant up
 
-# la machine est presque prêt 😁
+# La machine est presque prête 😁
 ```
 ### Configuration du fichier host
 > Cette étape permet d'accéder au site via votre navigateur sur l'url http://numeration.com
@@ -35,7 +35,7 @@ vagrant up
 #### Accéder au fichier hosts de votre system :
 ```shell
 sudo nano /etc/hosts
-# Ajouter cette ligne dans votre fichier hosts
+# Ajoutez cette ligne dans votre fichier hosts
 192.168.56.32   www.numeration.com numeration.com
 ```
 

@@ -25,7 +25,7 @@
     direction: in
     log: true
 
-- name:  Configuration du par-feux du serveur web [https]
+- name:  Configuration du par feu du serveur web [https]
   community.general.ufw:
     rule: allow
     port: 443

@@ -1,6 +1,6 @@
 # BDD Auth
-db_user: wordPress
-db_name: bd_numeration
+db_user: Wordpress
+db_name: db_numeration
 db_file: /home/vagrant/bd_numeration.sql
 
 # TODO: A Modifier

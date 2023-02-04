@@ -10,7 +10,7 @@
     - import_tasks: 2/folder_for_website_deployment.yml
     - import_tasks: 2/ssh_keys.yml
 
-- name: HTTP Numerisation
+- name: HTTP Numeration
   hosts: http
   become: yes
   become_method: sudo
@@ -21,7 +21,7 @@
     - import_tasks: 5/ufw_install.yml
     - import_tasks: 5/serveur_web/firewall_rules.yml
 
-- name: BDD Numerisationq
+- name: BDD Numeration
   hosts: bdd
   become: yes
   become_method: sudo

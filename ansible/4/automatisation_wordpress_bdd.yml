@@ -7,7 +7,7 @@
     enabled: yes
   become: yes
 
-- name: Crée l'utilisateur pour le wordPress
+- name: Cree l'utilisateur pour le wordPress
   mysql_user:
     name: "{{db_user}}"
     host: "%"
@@ -19,7 +19,7 @@
     state: present
   become: true
 
-- name: Configure un accès distance sur la bdd
+- name: Configure un accès distance sur la db
   become: true
   become_user: root
   lineinfile:
@@ -45,12 +45,12 @@
     state: absent
   become: true
 
-- name: Copie du script sql de la bdd wordPress
+- name: Copie du script sql de la db wordPress
   copy:
     src: wordpress/bd_numeration.sql
     dest: /home/vagrant
 
-- name: Création de la basse de donnée
+- name: Creation de la basse de donnee
   become: true
   mysql_db:
     name: "{{db_name}}"
@@ -58,5 +58,5 @@
     login_user: "{{db_user}}"
     login_password: "{{db_password}}"
 
-- name: Import de la BDD wordPress
+- name: Import de la DB wordPress
   shell: mysql -u {{db_user}} -p{{ db_password }} {{ db_name }} < {{ db_file }}
