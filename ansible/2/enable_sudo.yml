@@ -1,7 +1,7 @@
-- name: Ajouter 'user_wordpress' a la liste de sudoers
+- name: Ajouter 'web' a la liste de sudoers
   become: yes
   become_user: root
   lineinfile:
     path: /etc/sudoers
-    line: 'user_wordpress ALL=(ALL) NOPASSWD:ALL'
+    line: 'web ALL=(ALL) NOPASSWD:ALL'
     state: present

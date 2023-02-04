@@ -2,5 +2,5 @@
   file:
     path: /var/www
     state: directory
-    mode: 0777 # user_wordpress owner|Groupe owner|Others => R4+W2+X1	[sur 3 + sticky bit au debut] => info:l'utilisateur qui a cree le file est defini par defaut dans ce cas par ansible
+    mode: 0777
     group: devops

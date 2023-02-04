@@ -3,14 +3,14 @@
     name: devops
     state: present
 
-- name: Creer utilisateur 'user_wordpress'
+- name: Creer utilisateur 'web'
   user:
-    name: user_wordpress
+    name: web
     shell: /bin/bash
     password: $6$OStSJfA6FA$ffSDaJBWfSpmnwlC6QWJwLG3PgZWQhPYUSezmRvSiUFpwSWy/57KuUuLg/4yGBpKx2TWYsPDz9Yq7nL2I2XT3/
 
-- name: Assigner 'user_wordpress' au groupe 'devops'
+- name: Assigner 'web' au groupe 'devops'
   user:
-    name: user_wordpress
+    name: web
     groups: devops
     append: yes
