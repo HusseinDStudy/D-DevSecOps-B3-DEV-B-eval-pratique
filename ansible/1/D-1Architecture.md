@@ -16,17 +16,17 @@ D-DevSecOps-B3-GDPROG-eval-pratique
 │   │   ├── ssh_keys.yml
 │   │   └── user_and_group.yml
 │   ├── 3
-│   │   ├── dependences_bdd.yml
+│   │   ├── dependences_db.yml
 │   │   └── dependences_wordpress.yml
 │   ├── 4
-│   │   ├── automatisation_wordpress_bdd.yml
+│   │   ├── automatisation_wordpress_db.yml
 │   │   ├── automatisation_wordpress_deploiment.yml
 │   │   └── wordpress
 │   │       ├── apache.conf.j2
 │   │       ├── bd_numeration.sql
 │   │       └── numeration.tar.gz
 │   ├── 5
-│   │   ├── serveur_bdd
+│   │   ├── serveur_db
 │   │   │   └── firewall_rules.yml
 │   │   ├── serveur_web
 │   │   │   └── firewall_rules.yml
@@ -35,13 +35,15 @@ D-DevSecOps-B3-GDPROG-eval-pratique
 │   └── var_file.yml
 ├── LICENSE
 ├── README.md
+├── Retex.md
 └── vagrant
     ├── ssh_keys
     │   ├── devsecops
     │   └── devsecops.pub
     └── Vagrantfile
 
-11 directories, 22 files
+11 directories, 23 files
+
 
 ```
 

@@ -5,14 +5,14 @@
     policy: deny
     direction: incoming
 
-- name:  Configuration du par-feux du serveur bdd [SSH]
+- name:  Configuration du par-feux du serveur db [SSH]
   community.general.ufw:
     rule: allow
     port: 22
     proto: tcp
     direction: in
 
-- name: Configuration du par-feux du serveur bdd [3306]
+- name: Configuration du par-feux du serveur db [3306]
   community.general.ufw:
     rule: allow
     port: 3306

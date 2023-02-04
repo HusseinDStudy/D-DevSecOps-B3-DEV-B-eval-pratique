@@ -1,4 +1,4 @@
-# BDD Auth
+# DB Auth
 db_user: Wordpress
 db_name: db_numeration
 db_file: /home/vagrant/bd_numeration.sql

@@ -21,7 +21,7 @@
     - import_tasks: 5/ufw_install.yml
     - import_tasks: 5/serveur_web/firewall_rules.yml
 
-- name: BDD Numeration
+- name: DB Numeration
   hosts: bdd
   become: yes
   become_method: sudo
@@ -29,7 +29,7 @@
   vars_files:
     - var_file.yml
   tasks:
-    - import_tasks: 3/dependences_bdd.yml
-    - import_tasks: 4/automatisation_wordpress_bdd.yml
+    - import_tasks: 3/dependences_db.yml
+    - import_tasks: 4/automatisation_wordpress_db.yml
     - import_tasks: 5/ufw_install.yml
-    - import_tasks: 5/serveur_bdd/firewall_rules.yml
+    - import_tasks: 5/serveur_db/firewall_rules.yml
