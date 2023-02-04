@@ -32,8 +32,8 @@ vagrant up
 #### Accéder au fichier hosts de votre system :
 ```shell
 sudo nano /etc/hosts
-  # Ajouter cette ligne dans votre fichier hosts
-  192.168.56.32   www.numeration.com numeration.com
+# Ajouter cette ligne dans votre fichier hosts
+192.168.56.32   www.numeration.com numeration.com
 ```
 
 ## Teste le deployment
