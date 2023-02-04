@@ -1,8 +1,11 @@
 # BDD Auth
 db_user: wordPress
 db_name: bd_numeration
-db_password: XhZCpQBNS!zG0mdC0MTYFiUY?7BzB2mRGK9sNhP$
 db_file: /home/vagrant/bd_numeration.sql
+
+# TODO: A Modifier
+db_password: XhZCpQBNS!zG0mdC0MTYFiUY?7BzB2mRGK9sNhP$
+root_password: "Johny$English2023"
 
 # WordPress conf
 wp_db_name: "{{db_name}}"

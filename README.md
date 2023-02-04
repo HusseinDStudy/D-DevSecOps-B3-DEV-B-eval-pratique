@@ -14,6 +14,9 @@
 
 # Étape de configuration du wordPress :
 > <span style="color:red"> Placer vous dans le répertoire du projet !</span>
+### Securité :
+> <span style="color:red"> Il fait modifier les mots de passe dans le var_file.yml afin de Sécurisé son system !</span>
+
 ```shell
 # déplacer le fichier de clé ssh dans votre dossier publique
 mv vagrant/ssh_keys/* ~/.ssh/
