@@ -6,7 +6,7 @@
 
 ### Structure des fichiers :
 ```schell
-D-DevSecOps-B3-GDPROG-eval-pratique
+D-DevSecOps-B3-DEV-B-eval-pratique
 ├── ansible
 │   ├── 1
 │   │   └── D-1Architecture.md
