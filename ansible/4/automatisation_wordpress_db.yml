@@ -1,28 +1,5 @@
 - include_vars: ../var_file.yml
 
-- name: Apt-update
-  become: true
-  apt:
-    upgrade: yes
-    update_cache: yes
-
-- name: Install MySQL server
-  apt:
-    name: mysql-server
-    state: present
-
-- name: Install du package python et pip
-  apt:
-    name:
-      - python
-      - pip
-    state: present
-
-- name: Install du module python
-  pip:
-    name: PyMySQL
-    state: present
-
 - name: Ensure mysql is running and starts on boot
   service:
     name: mysql
@@ -30,26 +7,25 @@
     enabled: yes
   become: yes
 
-- name: Crée l'utilisateur pour le wordPress
-
+- name: Cree l'utilisateur pour le wordPress
   mysql_user:
     name: "{{db_user}}"
-    host: localhost
-    password: "{{root_password}}"
-    priv: "*.*:ALL"
+    host: "%"
+    password: "{{db_password}}"
+    priv: "{{db_name}}.*:ALL"
     login_unix_socket: /var/run/mysqld/mysqld.sock
     login_user: root
     login_password:
     state: present
   become: true
 
-- name: Configure un accès distance sur la bdd
+- name: Configure un accès distance sur la db
   become: true
   become_user: root
   lineinfile:
     dest: /etc/mysql/mysql.conf.d/mysqld.cnf
     regexp: '^bind-address'
-    line: 'bind-address = 192.168.56.32'
+    line: 'bind-address = 0.0.0.0'
 
 - name: Restart Mysql
   become: true
@@ -57,14 +33,30 @@
     name: mysql
     state: restarted
 
-- name: supprime le root
+- name: Set password admin root
 
   mysql_user:
     name: root
     host: localhost
-    password:
+    password: "{{root_password}}"
     login_unix_socket: /var/run/mysqld/mysqld.sock
     login_user: root
     login_password:
     state: absent
   become: true
+
+- name: Copie du script sql de la db wordPress
+  copy:
+    src: wordpress/bd_numeration.sql
+    dest: /home/vagrant
+
+- name: Creation de la basse de donnee
+  become: true
+  mysql_db:
+    name: "{{db_name}}"
+    state: present
+    login_user: "{{db_user}}"
+    login_password: "{{db_password}}"
+
+- name: Import de la DB wordPress
+  shell: mysql -u {{db_user}} -p{{ db_password }} {{ db_name }} < {{ db_file }}

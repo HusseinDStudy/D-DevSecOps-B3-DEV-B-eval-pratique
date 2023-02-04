@@ -1,0 +1,22 @@
+- name: Apt-update
+  become: true
+  apt:
+    upgrade: yes
+    update_cache: yes
+
+- name: Install MySQL server
+  apt:
+    name: mysql-server
+    state: present
+
+- name: Install du package python et pip
+  apt:
+    name:
+      - python
+      - pip
+    state: present
+
+- name: Install du module python
+  pip:
+    name: PyMySQL
+    state: present

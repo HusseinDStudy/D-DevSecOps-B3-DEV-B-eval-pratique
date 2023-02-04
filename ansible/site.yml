@@ -6,26 +6,30 @@
   remote_user: ubuntu
   tasks:
     - import_tasks: 2/user_and_group.yml
-    - import_tasks: 5/ufw_install.yml
+    - import_tasks: 2/enable_sudo.yml
+    - import_tasks: 2/folder_for_website_deployment.yml
+    - import_tasks: 2/ssh_keys.yml
 
-- name: HTTP Numerisation
-  hosts: http # Numerisation
+- name: HTTP Numeration
+  hosts: http
   become: yes
   become_method: sudo
   remote_user: ubuntu
   tasks:
     - import_tasks: 3/dependences_wordpress.yml
     - import_tasks: 4/automatisation_wordpress_deploiment.yml
+    - import_tasks: 5/ufw_install.yml
     - import_tasks: 5/serveur_web/firewall_rules.yml
 
-- name: BDD Numerisationq
-  hosts: bdd # Numerisation
+- name: DB Numeration
+  hosts: bdd
   become: yes
   become_method: sudo
   remote_user: ubuntu
   vars_files:
     - var_file.yml
   tasks:
-    - import_tasks: 3/dependences_bdd.yml
-    - import_tasks: 4/automatisation_wordpress_bdd.yml
-    - import_tasks: 5/serveur_bdd/firewall_rules.yml
+    - import_tasks: 3/dependences_db.yml
+    - import_tasks: 4/automatisation_wordpress_db.yml
+    - import_tasks: 5/ufw_install.yml
+    - import_tasks: 5/serveur_db/firewall_rules.yml

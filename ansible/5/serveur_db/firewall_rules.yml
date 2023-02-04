@@ -1,0 +1,21 @@
+- name:  Ne Pas Autoriser les connexion entrante
+  become: true
+  ufw:
+    state: enabled
+    policy: deny
+    direction: incoming
+
+- name:  Configuration du par-feux du serveur db [SSH]
+  community.general.ufw:
+    rule: allow
+    port: 22
+    proto: tcp
+    direction: in
+
+- name: Configuration du par-feux du serveur db [3306]
+  community.general.ufw:
+    rule: allow
+    port: 3306
+    proto: tcp
+    src : 192.168.56.32
+    direction: in

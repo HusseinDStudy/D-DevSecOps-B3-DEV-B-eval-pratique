@@ -7,40 +7,43 @@
 ### Structure des fichiers :
 ```schell
 D-DevSecOps-B3-GDPROG-eval-pratique
-├── LICENSE
-├── README.md
 ├── ansible
 │   ├── 1
 │   │   └── D-1Architecture.md
 │   ├── 2
+│   │   ├── enable_sudo.yml
+│   │   ├── folder_for_website_deployment.yml
+│   │   ├── ssh_keys.yml
 │   │   └── user_and_group.yml
 │   ├── 3
-│   │   ├── dependences_bdd.yml
+│   │   ├── dependences_db.yml
 │   │   └── dependences_wordpress.yml
 │   ├── 4
-│   │   ├── automatisation_wordpress_bdd.yml
+│   │   ├── automatisation_wordpress_db.yml
 │   │   ├── automatisation_wordpress_deploiment.yml
 │   │   └── wordpress
 │   │       ├── apache.conf.j2
 │   │       ├── bd_numeration.sql
 │   │       └── numeration.tar.gz
 │   ├── 5
-│   │   ├── serveur_bdd
+│   │   ├── serveur_db
 │   │   │   └── firewall_rules.yml
 │   │   ├── serveur_web
 │   │   │   └── firewall_rules.yml
 │   │   └── ufw_install.yml
-│   ├── 7
-│   │   └── pam_pwquality.yml
 │   ├── site.yml
 │   └── var_file.yml
+├── LICENSE
+├── README.md
+├── Retex.md
 └── vagrant
-    ├── Vagrantfile
-    └── ssh_keys
-        ├── devsecops
-        └── devsecops.pub
+    ├── ssh_keys
+    │   ├── devsecops
+    │   └── devsecops.pub
+    └── Vagrantfile
 
-13 directories, 20 files
+11 directories, 23 files
+
 
 ```
 
@@ -49,10 +52,3 @@ D-DevSecOps-B3-GDPROG-eval-pratique
 | Serveur VM #1                              | Interconnection                                   | Serveur VM #2                                    |
 |--------------------------------------------|---------------------------------------------------|--------------------------------------------------|
 | <div style="margin: auto;">WEB(HTTP)</div> | <span style="color:#eab676" ><===========></span> | <div style="width: 50%; margin: auto;">BDD</div> |
-
-### Command execution sur le bureau
-```Shell
-cd ~desktop/vagrant
-vagrant up
-vagrant ssh
-```

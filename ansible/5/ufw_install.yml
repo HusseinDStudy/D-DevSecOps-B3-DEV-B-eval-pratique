@@ -1,9 +1,5 @@
-- name: Allow everything and enable UFW
-  community.general.ufw:
-    state: enabled
-    policy: allow
-
-- name: Set logging
-  community.general.ufw:
-    logging: 'on'
-
+- name: Deployer UFW
+  become: true
+  apt:
+    name: ufw
+    state: present
