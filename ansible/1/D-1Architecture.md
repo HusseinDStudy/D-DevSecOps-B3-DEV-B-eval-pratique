@@ -7,16 +7,14 @@
 ### Structure des fichiers :
 ```schell
 D-DevSecOps-B3-GDPROG-eval-pratique
-├── LICENSE
-├── README.md
 ├── ansible
 │   ├── 1
 │   │   └── D-1Architecture.md
 │   ├── 2
+│   │   ├── enable_sudo.yml
+│   │   ├── folder_for_website_deployment.yml
+│   │   ├── ssh_keys.yml
 │   │   └── user_and_group.yml
-│   │   └── enable_sudo.yml
-│   │   └── folder_for_website_deployment.yml
-│   │   └── ssh_keys.yml
 │   ├── 3
 │   │   ├── dependences_bdd.yml
 │   │   └── dependences_wordpress.yml
@@ -33,17 +31,17 @@ D-DevSecOps-B3-GDPROG-eval-pratique
 │   │   ├── serveur_web
 │   │   │   └── firewall_rules.yml
 │   │   └── ufw_install.yml
-│   ├── 7
-│   │   └── pam_pwquality.yml
 │   ├── site.yml
 │   └── var_file.yml
+├── LICENSE
+├── README.md
 └── vagrant
-    ├── Vagrantfile
-    └── ssh_keys
-        ├── devsecops
-        └── devsecops.pub
+    ├── ssh_keys
+    │   ├── devsecops
+    │   └── devsecops.pub
+    └── Vagrantfile
 
-13 directories, 20 files
+11 directories, 22 files
 
 ```
 

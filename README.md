@@ -1,4 +1,4 @@
-# D-DevSecOps-B3-GDPROG--val-pratique
+# D-DevSecOps-B3-GDPROG-eval-pratique
 
 ### Configuration du projet
 - Virtual-Box (Version 6.1.x max) ou Parallels (18.1.1)(Mac M1)
