@@ -19,9 +19,9 @@ Les défis rencontrés sont principalement liés à la complexité de la mise en
 
 ## Solutions proposées :
 
-Nous allons utiliser le savoir appris en cours de DevSecOps donc la techno Vagrant pour déployer nos serveurs en VM et Ansible pour faire l'automatisation, la sécurisation et le déploiement des services.
+Nous allons utiliser le savoir appris en cours de DevSecOps, à savoir la techno Vagrant, pour déployer nos serveurs en VM et Ansible pour faire l'automatisation, la sécurisation et le déploiement des services.
 
 ## Conclusion :
 
-En conclusion, ce projet est une solution simple, secusirsé et efficace pour déployer un site web.
-Son développement nous a permis de développé nos compétences DevSecOps et nous a démontrer que c'est une approche efficace pour déployer de services dans un environnement de développement rapide et en constante évolution. 
+En conclusion, ce projet est une solution simple, securisée et efficace pour déployer un site web.
+Son développement nous a permis de développer nos compétences DevSecOps et nous a démontrer que c'est une approche efficace pour déployer de services dans un environnement de développement rapide et en constante évolution. 

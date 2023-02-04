@@ -1,4 +1,4 @@
-- name: Definir le fichier de cle SSH autorise pour utilisateur web
+- name: Definir le fichier de cle SSH autorisee pour utilisateur web
   authorized_key:
     user: web
     state: present

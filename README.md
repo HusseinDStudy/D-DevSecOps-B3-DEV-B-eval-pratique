@@ -40,14 +40,14 @@ sudo nano /etc/hosts
 ```
 
 ## Teste le deployment
-Il est de suivre ce lien [Numeration](http://numeration.com) sur votre navigateur
+Il vous suffit de suivre ce lien [Numeration](http://numeration.com) sur votre navigateur
 
 
 
 ### Information Provider
 > Cette version fonctionne également sur Parallels, avec une puce de mac M1
 
-Commenter la partie non désire dans le fichier vagrant fille
+Commentez la partie non désirée dans le fichier vagrant file
 
 ### Rappel de command vagrant : 
 ><span style=color:green>Les commands sont à exécuter dans le rep vagrant</span>
