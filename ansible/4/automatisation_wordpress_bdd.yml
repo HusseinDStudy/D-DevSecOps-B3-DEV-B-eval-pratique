@@ -11,7 +11,7 @@
   mysql_user:
     name: "{{db_user}}"
     host: "%"
-    password: "{{root_password}}"
+    password: "{{db_password}}"
     priv: "{{db_name}}.*:ALL"
     login_unix_socket: /var/run/mysqld/mysqld.sock
     login_user: root
@@ -56,7 +56,7 @@
     name: "{{db_name}}"
     state: present
     login_user: "{{db_user}}"
-    login_password: "{{root_password}}"
+    login_password: "{{db_password}}"
 
 - name: Import de la BDD wordPress
-  shell: mysql -u {{db_user}} -p{{ root_password }} {{ db_name }} < {{ db_file }}
+  shell: mysql -u {{db_user}} -p{{ db_password }} {{ db_name }} < {{ db_file }}

@@ -1,13 +1,13 @@
 # BDD Auth
 db_user: wordPress
 db_name: bd_numeration
-root_password: XhZCpQBNS!zG0mdC0MTYFiUY?7BzB2mRGK9sNhP$
+db_password: XhZCpQBNS!zG0mdC0MTYFiUY?7BzB2mRGK9sNhP$
 db_file: /home/vagrant/bd_numeration.sql
 
 # WordPress conf
 wp_db_name: "{{db_name}}"
 wp_db_user: "{{db_user}}"
-wp_db_password: "{{root_password}}"
+wp_db_password: "{{db_password}}"
 wp_db_host: "192.168.56.36"
 
 wp_prefix: num69Wp
