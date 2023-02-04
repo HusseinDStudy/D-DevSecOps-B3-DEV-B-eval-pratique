@@ -49,8 +49,8 @@ Il vous suffit de suivre ce lien [Numeration](http://numeration.com) sur votre n
 
 Commentez la partie non désirée dans le fichier vagrant file
 
-### Rappel de command vagrant : 
-><span style=color:green>Les commands sont à exécuter dans le rep vagrant</span>
+### Rappel de commande vagrant : 
+><span style=color:green>Les commandes sont à exécuter dans le répertoire vagrant</span>
 
 ````shell
 # Démarre les vm ou lance la creation et leur provision
